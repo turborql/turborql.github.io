@@ -210,10 +210,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-02-17 22:14:09 / 修改时间：22:19:47" itemprop="dateCreated datePublished" datetime="2020-02-17T22:14:09+08:00">2020-02-17</time>
+              <time title="创建时间：2020-02-17 22:54:15" itemprop="dateCreated datePublished" datetime="2020-02-17T22:54:15+08:00">2020-02-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-18 00:24:33" itemprop="dateModified" datetime="2020-02-18T00:24:33+08:00">2020-02-18</time>
+              </span>
 
           
 
@@ -226,85 +232,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>[toc]</p>
-<h3 id="一、初识HashMap"><a href="#一、初识HashMap" class="headerlink" title="一、初识HashMap"></a>一、初识HashMap</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;String,Integer&gt; map=<span class="keyword">new</span> HashMap();</span><br></pre></td></tr></table></figure>
-
-<h5 id="1、当创建HashMap集合对象的时候"><a href="#1、当创建HashMap集合对象的时候" class="headerlink" title="1、当创建HashMap集合对象的时候"></a>1、当创建HashMap集合对象的时候</h5><ul>
-<li>jdk8之前，在==构造方法==中创建一个个长度是16的Entry[] table用来存储键值对数据的。</li>
-<li>jdk8之后，在==第一次调用put方法==的时候创建数组，Node[] table用来存储键值对数据的。</li>
-</ul>
-<h5 id="2、HashMap底层如何计算出索引值"><a href="#2、HashMap底层如何计算出索引值" class="headerlink" title="2、HashMap底层如何计算出索引值"></a>2、HashMap底层如何计算出索引值</h5><p>底层采用key的hashCode（）方法的值  +  数组长度  ==》进行无符号右移，按位异或，按位与计算出索引。除了位运算，还有平方取中，取余数，伪随机数法，但是位运算的效率最高。</p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/38.png" alt="38"></p>
-<h5 id="3、什么时候变成红黑树？"><a href="#3、什么时候变成红黑树？" class="headerlink" title="3、什么时候变成红黑树？"></a>3、什么时候变成红黑树？</h5><p>节点长度及链表长度大于8，且数组长度大于64时，将链表变为红黑树。</p>
-<h5 id="4、在hashMap中如何解决hash冲突的"><a href="#4、在hashMap中如何解决hash冲突的" class="headerlink" title="4、在hashMap中如何解决hash冲突的"></a>4、在hashMap中如何解决hash冲突的</h5><p>拉链法</p>
-<h3 id="二、HashMap继承关系"><a href="#二、HashMap继承关系" class="headerlink" title="二、HashMap继承关系"></a>二、HashMap继承关系</h3><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/40.png" alt="40"></p>
-<h3 id="三、HashMap的成员变量"><a href="#三、HashMap的成员变量" class="headerlink" title="三、HashMap的成员变量"></a>三、HashMap的成员变量</h3><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/53.png" alt="53"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/47.png" alt="47"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/48.png" alt="48"></p>
-<h5 id="a-loadFactor"><a href="#a-loadFactor" class="headerlink" title=":a: loadFactor"></a>:a: loadFactor</h5><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/58.png" alt="58"></p>
-<h5 id="b-集合的初始化容量–必须是2的n次幂"><a href="#b-集合的初始化容量–必须是2的n次幂" class="headerlink" title=":b:  集合的初始化容量–必须是2的n次幂"></a>:b:  集合的初始化容量–必须是2的n次幂</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*The default initial capacity - MUST be a power of two.</span></span><br><span class="line"><span class="comment"> *默认的初始化容量是16---1&lt;&lt;4相当于1*2的4次方也就是16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// aka 16</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>==<strong>1、为什么必须是2的n次幂？</strong>==</p>
-</blockquote>
-<p>数组长度是2的n次幂</p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/41.png" alt="41"></p>
-<p>数组长度不是2的n次幂</p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/42.png" alt="42"></p>
-<blockquote>
-<p>当然如果不考虑效率，直接求余，就不需要数组长度必须是2的n次方了</p>
-</blockquote>
-<blockquote>
-<p>根据上面两张表，得出的小结：</p>
-</blockquote>
-<p>1、当我们根据key的hash确定其在数组的位置时，如果n是2的幂次方，可以保证数据的均匀插入，否则，可能数组的一些位置永远不会被插入数据，浪费数组的空间，加大hash冲突。</p>
-<p>2、HashMap容量为2次幂的原因，就是为乐数据的均匀分布，减少hash冲突，<u>毕竟hash冲突越大，越代表数组中一个链的长度越大，这样的话会降低hashmap的性能。</u></p>
-<blockquote>
-<p><strong>==2、如果创建的数组长度不是2的n次幂，会怎么样？==</strong></p>
-</blockquote>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/44.png" alt="44"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/43.png" alt="43"></p>
-<blockquote>
-<p>如果给定的初始容量为10，具体的计算过程</p>
-</blockquote>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/45.png" alt="45"></p>
-<h5 id="a-transient-int-size"><a href="#a-transient-int-size" class="headerlink" title=":a: transient int size;"></a>:a: transient int size;</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//size表示HashMap中存放KV的数量（为链表和树中的KV的总和）。</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> size;</span><br></pre></td></tr></table></figure>
-
-<h5 id="b-int-threshold"><a href="#b-int-threshold" class="headerlink" title=":b: int threshold;"></a>:b: int threshold;</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">threshold表示当HashMap的size大于threshold时会执行resize操作。 </span><br><span class="line">threshold=capacity*loadFactor</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* The next size value at which to resize (capacity * load           *factor).</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> threshold;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/57.png" alt="57"></p>
-<h3 id="四、构造方法"><a href="#四、构造方法" class="headerlink" title="四、构造方法"></a>四、构造方法</h3><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/50.png" alt="50"></p>
-<h5 id="1、HashMap"><a href="#1、HashMap" class="headerlink" title="1、HashMap()"></a>1、HashMap()</h5><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/49.png" alt="49"></p>
-<h5 id="2、HashMap-int"><a href="#2、HashMap-int" class="headerlink" title="2、HashMap(int)"></a>2、HashMap(int)</h5><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/51.png" alt="51"></p>
-<h5 id="3、HashMap-int-float"><a href="#3、HashMap-int-float" class="headerlink" title="3、HashMap(int, float)"></a>3、HashMap(int, float)</h5><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/52.png" alt="52"></p>
-<h5 id="4、HashMap-Map-lt-extends-K-extends-V-gt-m"><a href="#4、HashMap-Map-lt-extends-K-extends-V-gt-m" class="headerlink" title="4、HashMap(Map&lt;? extends K, ? extends V&gt; m)"></a>4、HashMap(Map&lt;? extends K, ? extends V&gt; m)</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR;</span><br><span class="line">    putMapEntries(m, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、成员方法"><a href="#五、成员方法" class="headerlink" title="五、成员方法"></a>五、成员方法</h3><h5 id="1、put（）"><a href="#1、put（）" class="headerlink" title="1、put（）"></a>1、put（）</h5><h5 id="2、get（）"><a href="#2、get（）" class="headerlink" title="2、get（）"></a>2、get（）</h5><h5 id="3、resize（）–扩容方法"><a href="#3、resize（）–扩容方法" class="headerlink" title="3、resize（）–扩容方法"></a>3、resize（）–扩容方法</h5><ul>
-<li>什么时候扩容？</li>
-</ul>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/55.png" alt="55"></p>
-<ul>
-<li>扩容原理</li>
-</ul>
-<p>扩容之后的索引位置要么是原来的索引位置，要么是原来索引位置+旧数组容量</p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/56.png" alt="56"></p>
-<h5 id="4、remove（）"><a href="#4、remove（）" class="headerlink" title="4、remove（）"></a>4、remove（）</h5><h5 id="5、treeifyBin（）"><a href="#5、treeifyBin（）" class="headerlink" title="5、treeifyBin（）"></a>5、treeifyBin（）</h5><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/59.png" alt="59"></p>
-<h3 id="六、如何设计HashMap的初始化容量最合理"><a href="#六、如何设计HashMap的初始化容量最合理" class="headerlink" title="六、如何设计HashMap的初始化容量最合理"></a>六、如何设计HashMap的初始化容量最合理</h3><ul>
-<li>根据阿里开发手册</li>
-</ul>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/54.png" alt="54"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/65.png" alt="65"></p>
-<h3 id="七、遍历集合的四种方式"><a href="#七、遍历集合的四种方式" class="headerlink" title="七、遍历集合的四种方式"></a>七、遍历集合的四种方式</h3><h5 id="1、分别遍历key和set"><a href="#1、分别遍历key和set" class="headerlink" title="1、分别遍历key和set"></a>1、分别遍历key和set</h5><h5 id="2、利用Iterator迭代器迭代"><a href="#2、利用Iterator迭代器迭代" class="headerlink" title="2、利用Iterator迭代器迭代"></a>2、利用Iterator迭代器迭代</h5><h5 id="3、通过get方法（不建议使用）"><a href="#3、通过get方法（不建议使用）" class="headerlink" title="3、通过get方法（不建议使用）"></a>3、通过get方法（不建议使用）</h5><h5 id="4、使用Map中的默认方法forEach"><a href="#4、使用Map中的默认方法forEach" class="headerlink" title="4、使用Map中的默认方法forEach"></a>4、使用Map中的默认方法forEach</h5><h3 id="视频截屏资料"><a href="#视频截屏资料" class="headerlink" title="视频截屏资料"></a>视频截屏资料</h3><p><a href="https://www.cnblogs.com/xawei/p/6747660.html" target="_blank" rel="noopener">https://www.cnblogs.com/xawei/p/6747660.html</a></p>
-<h5 id="1、HashMap数据结构及存储过程讲解"><a href="#1、HashMap数据结构及存储过程讲解" class="headerlink" title="1、HashMap数据结构及存储过程讲解"></a>1、HashMap数据结构及存储过程讲解</h5><p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/39.png" alt="39"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/61.png" alt="61"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/62.png" alt="62"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/60.png" alt="60"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/64.png" alt="64"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/63.png" alt="63"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/66.png" alt="66"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/67.png" alt="67"></p>
-<p><img src="/Users/qiulan/javastudy/typera%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/68.png" alt="68"></p>
-
+          <p>集合啦</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/17/%E9%9B%86%E5%90%88%E4%B9%8BHashMap/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
