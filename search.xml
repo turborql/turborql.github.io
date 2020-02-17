@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>初识docker</title>
+    <url>/2020/01/14/%E5%88%9D%E8%AF%86docker/</url>
+    <content><![CDATA[<h2 id="docker安装for-Mac"><a href="#docker安装for-Mac" class="headerlink" title="docker安装for Mac"></a>docker安装for Mac</h2><a id="more"></a>
+
+<p>安装命令<br>brew cask install docker</p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人博客の搭建</title>
+    <url>/2019/12/19/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E3%81%AE%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p>基于hexo的个人博客搭建</p>
+<a id="more"></a>
+
+<p>hexo是nodejs生成的</p>
+<h3 id="nodejs安装步骤"><a href="#nodejs安装步骤" class="headerlink" title="nodejs安装步骤"></a>nodejs安装步骤</h3><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、安装nodejs命令--brew install nodejs</span><br><span class="line">(npm不需要单独安装。在安装<span class="keyword">Node</span><span class="title">的时候，会连带一起安装npm</span> 。npm全称为<span class="keyword">Node</span> <span class="title">Package</span> Manager，是一个基于<span class="keyword">Node</span>.<span class="title">js</span>的包管理器。)</span><br><span class="line"><span class="number">2</span>、更新到最新版本</span><br><span class="line"><span class="keyword">node</span><span class="title">附带的npm</span>可能不是最新版本，用下面的命令，更新到最新版本。</span><br><span class="line">npm install npm@latest -g</span><br><span class="line"><span class="number">3</span>、测试是否安装成功</span><br><span class="line">命令如下，出现版本提示表示安装成功:</span><br><span class="line">$ npm -v</span><br><span class="line"><span class="number">6.9</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="切换到root用户查看nodejs和npm版本"><a href="#切换到root用户查看nodejs和npm版本" class="headerlink" title="切换到root用户查看nodejs和npm版本"></a>切换到root用户查看nodejs和npm版本</h3><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="切换到国内淘宝的镜像源速度快"><a href="#切换到国内淘宝的镜像源速度快" class="headerlink" title="切换到国内淘宝的镜像源速度快"></a>切换到国内淘宝的镜像源速度快</h3><figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g cnpm --registry=https:<span class="regexp">//</span>registry.<span class="built_in">npm</span>.taobao.org</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="下载hexo"><a href="#下载hexo" class="headerlink" title="下载hexo"></a>下载hexo</h3><figure class="highlight isbl"><table><tr><td class="code"><pre><span class="line"><span class="variable">cnpm</span> <span class="variable">install</span> -<span class="variable">g</span> <span class="variable">hexo</span>-<span class="variable">cli</span></span><br><span class="line"><span class="variable">hexo</span> -<span class="function"><span class="title">v</span>(查看<span class="variable">hexo</span>版本)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> blog<span class="comment">//创建文件夹</span></span><br><span class="line"><span class="keyword">cd</span> blog</span><br><span class="line">sudo hexo init<span class="comment">//初始化博客</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="启动博客"><a href="#启动博客" class="headerlink" title="启动博客"></a>启动博客</h3><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line"> Hexo is running <span class="keyword">at</span> <span class="keyword">http</span>://localhost:<span class="number">4000</span> . Press Ctrl+C <span class="built_in">to</span> <span class="built_in">stop</span>.</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="编辑博客"><a href="#编辑博客" class="headerlink" title="编辑博客"></a>编辑博客</h3><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">hexo</span> <span class="string">n "我的第一篇博客文章"</span></span><br><span class="line"><span class="attr">vim</span> <span class="string">我的第一篇博客文章.md</span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">clean</span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">g</span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">s</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="将博客部署到github上"><a href="#将博客部署到github上" class="headerlink" title="将博客部署到github上"></a>将博客部署到github上</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">、用户名部署个人博客的github仓库命名必须符合特定的要求才行</span></span><br><span class="line"><span class="number">2</span><span class="string">、安装git部署的插件</span></span><br><span class="line"><span class="string">cnpm</span> <span class="string">install</span> <span class="string">--save</span> <span class="string">hexo-deployer-git</span></span><br><span class="line"><span class="number">3</span><span class="string">、修改config.yml</span> <span class="string">文件</span></span><br><span class="line"><span class="string">vim</span> <span class="string">_config.yml</span> </span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/turborql/turborql.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  </span><br><span class="line">  <span class="string">部署到远端hexo</span> <span class="string">d</span></span><br></pre></td></tr></table></figure>
+<hr>
+]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+</search>
